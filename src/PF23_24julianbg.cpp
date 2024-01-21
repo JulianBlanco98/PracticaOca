@@ -430,13 +430,13 @@ void jugada (int &turno, int &total, bool &mover, jugador jugadorTurno, int dado
 					mover = false;
 					castigo = 3;
 					if (puntuacionPozo == 31){
-						castigoPozo = 0;
+						castigoPozo = 1;
 					}
 				} else {
 					castigo--;
 					mover = false;
 					if (puntuacionPozo == 31) {
-						castigoPozo = 0;
+						castigoPozo = 1;
 					}
 				}
 				break;
@@ -501,15 +501,30 @@ void jugada (int &turno, int &total, bool &mover, jugador jugadorTurno, int dado
 		cout << "Casilla numero: ( " << total << " )																		" << endl; //Fila 48
 		pintarCasilla(total, tableroOca, turno);
 		gotoxy(1, 49);
-		accionTablero(total, castigo);
-		if (casillaTablero == 'N' || casillaTablero == 'V'){
+		if (casillaTablero == 'V'){
+			textcolor(RED);
+			cout << "Has caido en la calavera. Vuelves al inicio" << endl;
 			mover = true;
+			total = 0;
 		}
-
+		if (casillaTablero == 'N'){
+			mover = true;
+			textcolor(LIGHTGRAY);
+			cout << "Has caido en una casilla normal" << endl;
+			pintarCasilla(total, tableroOca, turno);
+		}
+		if (casillaTablero == 'O'){
+			textcolor(LIGHTGREEN);
+			cout << "De oca a oca y tiro porque me toca." << endl;
+			total = 63;
+		}
 	}
 
 	if (total == MAX_CASILLAS){
+		mostrarTablero(tableroOca);
+		pintarCasilla(total, tableroOca, turno);
 		textcolor(GREEN);
+		limpiarPantalla(1, 49);
 		gotoxy(1, 49);
 		cout << "HAS CAIDO EN LA CASILLA DEL JARDIN DE LA OCA" << endl;
 	}
