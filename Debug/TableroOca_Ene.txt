@@ -1,0 +1,7 @@
+N N X N O P N N O
+N N P N O N N N O
+S N N N O N N D O
+N N N Z O N N N O
+N N N N O L N N O
+N N N N O N N D O
+N C N V O N N N O
